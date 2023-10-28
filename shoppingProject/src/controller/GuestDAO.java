@@ -231,7 +231,7 @@ public class GuestDAO {
 			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
 
-			System.out.println("일련번호\t아이디\t비밀번호\t고객번호\t고객이름\t전화번호\t주소");
+			
 
 			if (rs.next()) {
 				gvo = new GuestVO();
@@ -244,7 +244,13 @@ public class GuestDAO {
 				gvo.setAdress(rs.getString("adress"));
 
 				
-				System.out.println(gvo.getNo()+"\t"+gvo.getId()+"\t"+gvo.getPw()+"\t"+gvo.getG_no()+"\t"+gvo.getG_name()+"\t"+gvo.getPhone_no()+"\t"+gvo.getAdress());
+				System.out.println("일련번호 : "+gvo.getNo()+"\n"+
+						"id : "+gvo.getId()+"\n"+
+						"pw : "+gvo.getPw()+"\n"+
+						"고객번호 : "+gvo.getG_no()+"\n"+
+						"고객이름"+gvo.getG_name()+"\n"+
+						"전화번호"+gvo.getPhone_no()+"\n"+
+						"주소"+gvo.getAdress());
 
 			}
 		} catch (SQLException e) {

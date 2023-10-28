@@ -79,7 +79,7 @@ public class GuestRegisterManager {
 
 		gdao.setGuestUpdate(gvo);
 
-		System.out.println("----------고객 전체 목록-----------");
+		System.out.println("-------------------------------");
 		gdao.getGuest(gvo.getId(),gvo.getPw());
 		System.out.println("-------------------------------");
 	}
