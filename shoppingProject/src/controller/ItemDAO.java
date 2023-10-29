@@ -84,18 +84,17 @@ public class ItemDAO {
 		}
 	}
 
-	// 학과 수정
+	//아이템 정보 수정
 	public void setItemUpdate(ItemVO ivo) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("update item set i_no=?, i_name =?, price =? where no=?");
-			pstmt.setInt(1, ivo.getI_no());
-			pstmt.setString(2, ivo.getI_name());
-			pstmt.setInt(3, ivo.getPrice());
-			pstmt.setInt(4, ivo.getNo());
+			pstmt = con.prepareStatement("update item set i_name =?, price =? where no=?");
+			pstmt.setString(1, ivo.getI_name());
+			pstmt.setInt(2, ivo.getPrice());
+			pstmt.setInt(3, ivo.getNo());
 
 			int i = pstmt.executeUpdate();
 
@@ -137,7 +136,7 @@ public class ItemDAO {
 			if (i == 1) {
 				System.out.println("삭제 성공!!");
 			} else {
-				System.out.println("학과 삭제 실패ㅠㅠ");
+				System.out.println("삭제 실패ㅠㅠ");
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL=[" + e + "]");

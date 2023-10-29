@@ -52,7 +52,7 @@ public class GuestDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("update guest set pw=?, phone_no=?, address=? where g_no=?");
+			pstmt = con.prepareStatement("update guest set pw=?, phone_no=?, adress=? where g_no=?");
 			pstmt.setString(1, gvo.getPw());
 			pstmt.setString(2, gvo.getPhone_no());
 			pstmt.setString(3, gvo.getAdress());
@@ -283,7 +283,6 @@ public class GuestDAO {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			System.out.println("일련번호\t아이디\t비밀번호\t고객번호\t고객이름\t전화번호\t주소");
 			while (rs.next()) {
 				gvo = new GuestVO();
 				gvo.setNo(rs.getInt("no"));
@@ -294,6 +293,14 @@ public class GuestDAO {
 				gvo.setPhone_no(rs.getString("phone_no"));
 				gvo.setAdress(rs.getString("adress"));
 
+				System.out.println("일련번호 : "+gvo.getNo()+"\n"+
+						"id : "+gvo.getId()+"\n"+
+						"pw : "+gvo.getPw()+"\n"+
+						"고객번호 : "+gvo.getG_no()+"\n"+
+						"고객이름 : "+gvo.getG_name()+"\n"+
+						"전화번호 : "+gvo.getPhone_no()+"\n"+
+						"주소"+gvo.getAdress()+"\n"
+						+"-------------------------------");
 			}
 		} catch (SQLException se) {
 			System.out.println(se);

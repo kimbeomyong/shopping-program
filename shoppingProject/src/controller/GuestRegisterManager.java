@@ -65,6 +65,7 @@ public class GuestRegisterManager {
 
 		System.out.println("수정할 일련번호 입력>>");
 		no = scan.nextInt();
+		scan.nextLine();
 		System.out.println("수정할 비밀번호 입력>>");
 		pw = scan.nextLine();
 		System.out.println("수정할 전화번호 입력>>");
@@ -84,56 +85,21 @@ public class GuestRegisterManager {
 		System.out.println("-------------------------------");
 	}
 
-	// 고객정보 삭제 관리
-	// 학생 정보 수정
-	public void studnetUpdate() throws Exception {
-		Scanner scan = new Scanner(System.in);
-		GuestDAO gdao =new GuestDAO();
-		GuestVO gvo =new GuestVO();
+	
+	public void studnetTotalList() throws Exception {
+		Scanner input = new Scanner(System.in);
+		GuestDAO guest = new GuestDAO();
+		String pw;
+		System.out.println("학생 정보 전체 목록");
+		System.out.print("관리자 비밀번호 : ");
 		
-		String id; // 아이디
-		String pw; // 입력 비밀번호
-		String g_no; // 학번
-		String pw_update;//수정비밀번호
-		String phone_no; // 수정 전화번호
-		String address; // 수정 주소
+		pw = input.nextLine();
 		
-		boolean success = false;
-		
-		System.out.println("학생 정보 수정");
-		do {
-			System.out.print("아이디 : ");
-			id = scan.nextLine();
-			System.out.print("비밀번호 : ");
-			pw = scan.nextLine();
-			success = gdao.getGuestLogin(id, pw);
-			
-			if (!success) {
-				System.out.println("아이디 또는 비밀번호가 틀림 다시 입력");
-			}
-			
-		} while (!success);
-		g_no = gdao.getGuestNo(id, pw);
-		System.out.println();
-		System.out.println("수정할 회원");
-		System.out.println("학생번호 : " + g_no);
-		System.out.print("비밀번호(12자 이내) : ");
-		pw_update = scan.nextLine();
-		System.out.print("전화번호 : ");
-		phone_no = scan.nextLine();
-		System.out.print("주소 : ");
-		address = scan.nextLine();
-		
-		
-		gvo.setPw(pw_update);
-		gvo.setPhone_no(phone_no);
-		gvo.setAdress(address);
-		gdao.setGuestUpdate(gvo);
-		
-		System.out.println();
-		System.out.println("학생 정보 수정 결과");
-		gdao.getGuest(id, gvo.getPw());
-		System.out.println("-------------------------------");
-	}
+		if(pw.equals("admin1234")) {
+		guest.getStudentTotalList();
+		} else {
+		System.out.println("관리자 비밀번호가 틀립니다.");
+		}
+		}
 
 }

@@ -18,9 +18,8 @@ public class MenuViewer {
 		System.out.println("------------고객정보-------------");
 		System.out.println("1. 회원가입");
 		System.out.println("2. 고객 정보 수정");
-		System.out.println("3. 고객 정보 확인하기");
-		System.out.println("4. 고객 정보 제거");
-		System.out.println("5. 메인");
+		System.out.println("3. 고객 정보 확인하기(admin)");
+		System.out.println("4. 메인");
 		System.out.println("-------------------------------");
 	}
 

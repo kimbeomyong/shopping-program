@@ -1,9 +1,7 @@
 package main;
 
-import java.util.Scanner;
-
 import controller.GuestRegisterManager;
-import model.AdminVO;
+import controller.ItemRegisterManager;
 import view.MenuViewer;
 
 public class ShoppingMain {
@@ -31,7 +29,8 @@ public class ShoppingMain {
 				case 4:
 					System.out.println("프로그램을 종료합니다.");
 					return;
-				default : System.out.println("1,2,3,4 중 하나를 선택해주세요.");	
+				default:
+					System.out.println("1,2,3,4 중 하나를 선택해주세요.");
 				}
 			} catch (Exception e) {
 				System.out.println("\n입력에 오류가 있습니다.\n프로그램을 다시 시작하세요.");
@@ -42,18 +41,48 @@ public class ShoppingMain {
 	}
 
 	private static void cartMenu() {
-	
-	}
-	
-	private static void itemMenu() {
-		AdminVO admin = new AdminVO();
 
+	}
+
+	private static void itemMenu() {
+		ItemRegisterManager item = new ItemRegisterManager();
+		int choice;
+
+		while (true) {
+			try {
+				MenuViewer.item();
+				choice = MenuViewer.scan.nextInt();
+				MenuViewer.scan.nextLine();
+				switch (choice) {
+				case 1:
+					item.itemSelect();
+					break;
+				case 2:
+					item.itemInsert();
+					break;
+				case 3:
+					item.itemUpdate();
+					break;
+				case 4:
+					item.itemDelete();
+					break;
+				case 5:
+					System.out.println("메인으로 돌아갑니다.");
+					return;
+				default:
+					System.out.println("1,2,3,4 중 하나를 선택해주세요.");
+				}
+			} catch (Exception e) {
+				System.out.println("\n입력에 오류가 있습니다.\n프로그램을 다시 시작하세요.");
+				return;
+			}
+		}
 	}
 
 	private static void guestMenu() {
 		int choice;
 		GuestRegisterManager guest = new GuestRegisterManager();
-		
+
 		while (true) {
 			try {
 				MenuViewer.guest();
@@ -67,15 +96,13 @@ public class ShoppingMain {
 					guest.guestUpdate();
 					break;
 				case 3:
-					
+					guest.studnetTotalList();
 					break;
-				case 4: 
-					
-					break;
-				case 5:
+				case 4:
 					System.out.println("메인으로 돌아갑니다.");
 					return;
-				default : System.out.println("1,2,3,4 중 하나를 선택해주세요.");	
+				default:
+					System.out.println("1,2,3,4 중 하나를 선택해주세요.");
 				}
 			} catch (Exception e) {
 				System.out.println("\n입력에 오류가 있습니다.\n프로그램을 다시 시작하세요.");
@@ -83,5 +110,5 @@ public class ShoppingMain {
 			}
 		}
 	}
-	
+
 }
