@@ -37,7 +37,7 @@ public class MenuViewer {
 		System.out.println("-------------shop-------------");
 		System.out.println("1. 장바구니 아이템 담기");
 		System.out.println("2. 장바구니 아이템 삭제");
-		System.out.println("3. 장바구니 목록 보기");
+		System.out.println("3. 영수증");
 		System.out.println("4. 메인");
 		System.out.println("-------------------------------");
 	}

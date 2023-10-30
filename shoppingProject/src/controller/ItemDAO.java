@@ -18,10 +18,10 @@ public class ItemDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from Item order by no");
+			pstmt = con.prepareStatement("select * from Item");
 			rs = pstmt.executeQuery();
 
-			System.out.println("일련번호\t제품번호\t제품이름\t제품가격");
+			System.out.println("일련번호\t제품번호\t제품이름\t\t제품가격");
 
 			while (rs.next()) {
 				ivo = new ItemVO();
@@ -30,7 +30,7 @@ public class ItemDAO {
 				ivo.setI_name(rs.getString("i_name"));
 				ivo.setPrice(rs.getInt("price"));
 
-				System.out.println(ivo.getNo() + "\t" + ivo.getI_no() + "\t" + ivo.getI_name() + "\t" + ivo.getPrice());
+				System.out.println(ivo.getNo() + "\t" + ivo.getI_no() + "\t" + ivo.getI_name() + "\t\t" + ivo.getPrice());
 
 			}
 		} catch (SQLException se) {

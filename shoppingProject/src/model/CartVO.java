@@ -16,6 +16,9 @@ public class CartVO {
 		this.g_no = g_no;
 		this.total_price = total_price;
 	}
+	public CartVO(){
+		super();
+	}
 	
 	//getter setter 
 	public int getNo() {

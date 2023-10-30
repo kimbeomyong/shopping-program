@@ -25,7 +25,6 @@ public class ItemRegisterManager {
 	}
 	//아이템 목록 보기
 	public void itemSelect() throws Exception{
-		Scanner scan = new Scanner(System.in);
 		ItemDAO item = new ItemDAO();
 			item.getItemTotalList();
 		
