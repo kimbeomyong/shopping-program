@@ -57,14 +57,14 @@ public class GuestRegisterManager {
 		Scanner scan = new Scanner(System.in);
 		GuestDAO gdao = new GuestDAO();
 		GuestVO gvo = new GuestVO();
-
-		int no;
+		int g_no;
 		String pw;
 		String phone_no;
 		String adress;
 
+
 		System.out.println("수정할 일련번호 입력>>");
-		no = scan.nextInt();
+		g_no = scan.nextInt();
 		scan.nextLine();
 		System.out.println("수정할 비밀번호 입력>>");
 		pw = scan.nextLine();
@@ -73,7 +73,7 @@ public class GuestRegisterManager {
 		System.out.println("수정할 주소 입력>>");
 		adress = scan.nextLine();
 
-		gvo.setNo(no);
+		gvo.setG_no(g_no);
 		gvo.setPw(pw);
 		gvo.setPhone_no(phone_no);
 		gvo.setAdress(adress);
@@ -96,7 +96,7 @@ public class GuestRegisterManager {
 		pw = input.nextLine();
 		
 		if(pw.equals("admin1234")) {
-		guest.getStudentTotalList();
+		guest.getGuestTotalList();
 		} else {
 		System.out.println("관리자 비밀번호가 틀립니다.");
 		}

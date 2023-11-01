@@ -52,30 +52,36 @@ public class GuestDAO {
 
 		try {
 			con = DBUtil.getConnection();
+
 			pstmt = con.prepareStatement("update guest set pw=?, phone_no=?, adress=? where g_no=?");
 			pstmt.setString(1, gvo.getPw());
 			pstmt.setString(2, gvo.getPhone_no());
 			pstmt.setString(3, gvo.getAdress());
-			pstmt.setInt(4, gvo.getG_no());
-			int i = pstmt.executeUpdate();
+			pstmt.setString(4, Integer.toString(gvo.getG_no()));
 
+			System.out.println(gvo.getPw() + gvo.getPhone_no() + gvo.getAdress() + gvo.getG_no());
+			int i = pstmt.executeUpdate();
+			System.out.println(i);
 			if (i == 1) {
 				System.out.println("수정 성공!!");
 			} else {
 				System.out.println("수정 실패ㅠㅠ");
 			}
+			System.out.println("2");
 		} catch (SQLException e) {
-			System.out.println("SQL=[" + e + "]");
+			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("JAVA=[" + e + "]");
+			e.printStackTrace();
 		} finally {
 			try {
+				System.out.println("3");
 				// 데이터베이스와의 연결에 사용되었던 오브젝트를 해제
 				if (pstmt != null)
 					pstmt.close();
 				if (con != null)
 					con.close();
 			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -147,13 +153,13 @@ public class GuestDAO {
 		return idOverlapResult;
 	}
 
-	// 고객 로그인
-	public boolean getGuestLogin(String id, String pw) throws Exception {
+	// 고객 정보
+	public int checkGuest(String id, String pw) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		boolean loginSuccess = false;
-		
+		GuestVO gvo = null;
+		int checkFlag = 0;
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("select * from guest where id = ? and pw = ?");
@@ -161,7 +167,7 @@ public class GuestDAO {
 			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				loginSuccess = true; // 로그인 성공
+				checkFlag = 1;
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL=[" + e + "]");
@@ -179,7 +185,7 @@ public class GuestDAO {
 			} catch (SQLException e) {
 			}
 		}
-		return loginSuccess;
+		return checkFlag;
 	}
 
 	// 고객 번호
@@ -188,7 +194,7 @@ public class GuestDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String g_no = "";
-		
+
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("select g_no from guest where id = ? and pw= ?");
@@ -231,8 +237,6 @@ public class GuestDAO {
 			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
 
-			
-
 			if (rs.next()) {
 				gvo = new GuestVO();
 				gvo.setNo(rs.getInt("no"));
@@ -243,14 +247,9 @@ public class GuestDAO {
 				gvo.setPhone_no(rs.getString("phone_no"));
 				gvo.setAdress(rs.getString("adress"));
 
-				
-				System.out.println("일련번호 : "+gvo.getNo()+"\n"+
-						"id : "+gvo.getId()+"\n"+
-						"pw : "+gvo.getPw()+"\n"+
-						"고객번호 : "+gvo.getG_no()+"\n"+
-						"고객이름"+gvo.getG_name()+"\n"+
-						"전화번호"+gvo.getPhone_no()+"\n"+
-						"주소"+gvo.getAdress());
+				System.out.println("일련번호 : " + gvo.getNo() + "\n" + "id : " + gvo.getId() + "\n" + "pw : " + gvo.getPw()
+						+ "\n" + "고객번호 : " + gvo.getG_no() + "\n" + "고객이름" + gvo.getG_name() + "\n" + "전화번호"
+						+ gvo.getPhone_no() + "\n" + "주소" + gvo.getAdress());
 
 			}
 		} catch (SQLException e) {
@@ -272,7 +271,7 @@ public class GuestDAO {
 	}
 
 	// 고객 전체 목록
-	public void getStudentTotalList() throws Exception {
+	public void getGuestTotalList() throws Exception {
 		String sql = "select * from guest";
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -282,7 +281,7 @@ public class GuestDAO {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				gvo = new GuestVO();
 				gvo.setNo(rs.getInt("no"));
@@ -293,14 +292,9 @@ public class GuestDAO {
 				gvo.setPhone_no(rs.getString("phone_no"));
 				gvo.setAdress(rs.getString("adress"));
 
-				System.out.println("일련번호 : "+gvo.getNo()+"\n"+
-						"id : "+gvo.getId()+"\n"+
-						"pw : "+gvo.getPw()+"\n"+
-						"고객번호 : "+gvo.getG_no()+"\n"+
-						"고객이름 : "+gvo.getG_name()+"\n"+
-						"전화번호 : "+gvo.getPhone_no()+"\n"+
-						"주소"+gvo.getAdress()+"\n"
-						+"-------------------------------");
+				System.out.println("일련번호 : " + gvo.getNo() + "\n" + "id : " + gvo.getId() + "\n" + "pw : " + gvo.getPw()
+						+ "\n" + "고객번호 : " + gvo.getG_no() + "\n" + "고객이름 : " + gvo.getG_name() + "\n" + "전화번호 : "
+						+ gvo.getPhone_no() + "\n" + "주소" + gvo.getAdress() + "\n" + "-------------------------------");
 			}
 		} catch (SQLException se) {
 			System.out.println(se);

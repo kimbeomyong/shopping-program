@@ -1,6 +1,6 @@
 package main;
 
-import controller.CartDVO;
+import controller.CartDAO;
 import controller.CartRegisterManager;
 import controller.GuestRegisterManager;
 import controller.ItemRegisterManager;
